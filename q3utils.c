@@ -16,6 +16,18 @@ char* tokenize(char *vals){
 return result;
 
 }
+char* tokenize_cret(char *vals){
+	char delims[] = "\n";
+	char *result = NULL;
+	result = strtok(vals , delims );
+	while( result != NULL ) {
+		printf( "result is \"%s\"\n", result );
+		return result;
+		//    result = strtok( NULL, delims );
+	}
+return result;
+
+}
 
 
 q3stats_t* showinfo(char *data) {
@@ -31,15 +43,15 @@ q3stats_t* showinfo(char *data) {
 		if (!strcmp(data, "dmflags")) {
 			data = p + 1;
 			q3st->dmflags=data;
-			printf("dmflags %d\n",q3st->dmflags);
+			printf("dmflags %s\n",q3st->dmflags);
 		} else if (!strcmp(data,"fraglimit")){
 			data = p + 1;
 			q3st->fraglimit=data;
-			printf("fraglimit %d\n",q3st->fraglimit);
+			printf("fraglimit %s\n",q3st->fraglimit);
 		} else if (!strcmp(data, "timelimit")) {
 			data = p + 1;
 			q3st->timelimit=data;
-			printf("timelimit %d\n",q3st->timelimit);
+			printf("timelimit %s\n",q3st->timelimit);
 		}else if (!strcmp(data, "sv_maxclients")) {
 			data = p + 1;
 			q3st->sv_maxclients=data;
@@ -100,8 +112,12 @@ q3stats_t* showinfo(char *data) {
 			printf("GAMENAME %s\n",q3st->gamename);
 		}else if (!strcmp(data, "g_needpass")) {
 			data = p + 1;
-			q3st->g_needpass=data;
-			printf("needpass %d\n",q3st->g_needpass);
+			if(strchr(data,'\n')!=NULL){
+			q3st->g_needpass=tokenize_cret(data);
+			}else{
+				q3st->g_needpass=data;
+			}
+			printf("needpass %s\n",q3st->g_needpass);
 		}
 		//}//endof if(!nt)
 		//else {

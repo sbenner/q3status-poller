@@ -155,24 +155,24 @@ $23,$24::int4,$25::int4);";
 	params[24] =  q3stats->server_ospauth;
 
 
-	PGresult * prep = PQprepare(conn,"insert",query,25,NULL);
-
-	printf("PREP PQresStatus : %s\n",   PQresStatus(PQresultStatus(prep)));
-	printf("PQresultErrorMessage : %s\n",   PQresultErrorMessage(prep));
+//	PGresult * prep = PQprepare(conn,"insert",query,25,NULL);
+//
+//	printf("PREP PQresStatus : %s\n",   PQresStatus(PQresultStatus(prep)));
+//	printf("PQresultErrorMessage : %s\n",   PQresultErrorMessage(prep));
 	//
-	//        PGresult *  res = PQexecParams(conn, query, 27,
-	//        		NULL,
-	//        		params,
-	//        		NULL, NULL,
-	//        		0);
+	        PGresult *  res = PQexecParams(conn, query, 25,
+	        		NULL,
+	        		params,
+	        		NULL, NULL,
+	        		0);
 
-	PGresult * res = PQexecPrepared(conn,
-			"insert",
-			25,
-			params,
-			NULL,
-			0,
-			0);
+//	PGresult * res = PQexecPrepared(conn,
+//			"insert",
+//			25,
+//			params,
+//			NULL,
+//			0,
+//			0);
 
 	printf("RES PQresStatus : %s\n",   PQresStatus(PQresultStatus(res)));
 	printf("RES PQresultErrorMessage : %s\n",   PQresultErrorMessage(res));
