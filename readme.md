@@ -1,9 +1,9 @@
 
-A check status service for a q3 server. 
+A check status service for a quake3 server. 
 
 
-Use postgresql
-run the script which is located in the "sql" directory.
+* Use local postgresql server and local quake3 server to test
+* run the script which is located in the "sql" directory to create the table for statuses
 
 ```
 cd Default
